@@ -4,6 +4,7 @@ const requireDir = require('require-dir');
 const app = express();
 //yarn start
 
+//npx sequelize db:migrate
 
 app.use(express.json());
 app.use(cors());

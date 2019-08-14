@@ -2,10 +2,16 @@ const { User } = require('../app/models');
 
 module.exports = {
     async getUsers(req, res) {
-        return res.send('deu boa');
+        const users = await User.findAll();
+        return res.json(users);
     },
 
     async getUserById(req, res) {
+        const user =  await User.findAll({
+            where: {id: req.params.id}
+        });
+     
+        return res.json(user);
     },
 
     async postUser(req, res) {
@@ -31,49 +37,12 @@ module.exports = {
     },
 
     async deleteUser(req, res) {
-
+        await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        return res.send();
     }
 
-
-    /*
-    app.get('/users', async (req, res) => {
-  const users = await User.findAll(); 
-  return res.send(users);
-}); 
-
-app.post('/users', (req, res) => {
-  try {
-    let userName = req.param('name');
-    let userEmail = req.param('email');
-    let userPassword = req.param('password');
-    User.create({name:userName, email:userEmail, password:userPassword});
-    return res.send('Sucess');
-  } catch (error) {
-    return res.send('Error: ' + error);
-  }
-  
-}); // Criar
-
-app.get('/users/:uName', async(req, res) => {
-  let uName = req.params.uName;
-  const result = await User.findAll({
-    where:{
-      name: uName
-    }
-  });
-  return res.send(result);
-}); //Buscar
-
-app.put('/users/:id', (req, res) => {}); //Editar
-
-app.delete('/users/delete/:uName', async(req, res) => {
-  let uName = req.params.uName;
-  const result = await User.delete({
-    where:{
-      name: uName
-    }
-  });
-  return res.send(result);
-}); //Deletar
-    */
 }

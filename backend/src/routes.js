@@ -13,6 +13,6 @@ routes.post('/users', userController.postUser);
 //edita um usuário ja existente
 routes.put('/users/:id', userController.editUser);
 //deleta o usuário
-routes.delete('/users/:id', userController.deleteUser);
+routes.delete('/users/delete/:id', userController.deleteUser);
 
 module.exports = routes;

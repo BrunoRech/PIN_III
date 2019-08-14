@@ -20,6 +20,12 @@ module.exports = {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      birthDate: {
+        allowNull: false,   
+        type: DataTypes.DATEONLY,
+      }
+      /*
+      ,
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -28,6 +34,7 @@ module.exports = {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      */
     });
   },
 
