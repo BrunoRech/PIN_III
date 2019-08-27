@@ -3,6 +3,7 @@ const routes = express.Router();
 
 //controllers
 const userController = require('./controllers/UserController');
+const loginController = require('./controllers/LoginController');
 
 //retorna todos
 routes.get('/users', userController.getUsers);
@@ -15,4 +16,6 @@ routes.put('/users/:id', userController.editUser);
 //deleta o usuário
 routes.delete('/users/delete/:id', userController.deleteUser);
 
+routes.post('/login', loginController.login);
+routes.post('/teste', loginController.teste);
 module.exports = routes;
