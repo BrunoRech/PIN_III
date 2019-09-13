@@ -2,8 +2,8 @@ const express = require('express');
 const routes = express.Router();
 
 //controllers
-const userController = require('./controllers/UserController');
-const loginController = require('./controllers/LoginController');
+const userController = require('./controllers/Users/UserController');
+const loginController = require('./controllers/Login/LoginController');
 
 //retorna todos
 routes.get('/users', userController.getUsers);

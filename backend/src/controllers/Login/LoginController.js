@@ -1,4 +1,4 @@
-const JwtController = require('./JwtController');
+const JwtController = require('../Jwt/JwtController');
 
 module.exports = {
 
