@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   
-  const User = sequelize.define('User', {//TODO add tipoUsuario
+  const User = sequelize.define('User', {
+    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {
       type: DataTypes.STRING
     },
@@ -15,8 +16,15 @@ module.exports = (sequelize, DataTypes) => {
 
     birthDate: {
       type: DataTypes.DATE
+    },
+
+    tipoUsuario:{
+      type: DataTypes.INTEGER
     }
   });
-  
+
+  User.hasMany(sequelize.import('./FavoriteCourse.js'));
+  User.hasMany(sequelize.import('./UserSearch.js'));
+
   return User;
 }

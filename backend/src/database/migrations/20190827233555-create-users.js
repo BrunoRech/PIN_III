@@ -27,19 +27,8 @@ module.exports = {
       type: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        
-      }
-      /*
-      ,
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
+        defaultValue: 0,
       },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      */
     });
   },
 

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const requireDir = require('require-dir');
 const app = express();
-//yarn start
+//yarn dev
 
 //npx sequelize db:migrate
 

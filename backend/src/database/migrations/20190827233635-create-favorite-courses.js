@@ -7,6 +7,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
+        references: { model: 'User', keys: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
 
       CourseId:{
@@ -14,6 +17,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
+        references: { model: 'Course', keys: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
 
     });

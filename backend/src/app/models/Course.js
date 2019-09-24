@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) =>{ 
 
     const Course = sequelize.define('Course', {
+        id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         category: {type: DataTypes.STRING},
         description: {type: DataTypes.STRING},
         image: {type: DataTypes.STRING},
@@ -11,5 +12,6 @@ module.exports = (sequelize, DataTypes) =>{
         rating: {type: DataTypes.DOUBLE},
     });
 
+    Course.hasMany(sequelize.import('./FavoriteCourse.js'));
     return Course;
 }
