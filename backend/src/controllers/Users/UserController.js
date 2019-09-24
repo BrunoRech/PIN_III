@@ -1,13 +1,13 @@
-const { User } = require('../../app/models');
+const { Users } = require('../../app/models');
 
 module.exports = {
     async getUsers(req, res) {
-        const users = await User.findAll();
+        const users = await Users.findAll();
         return res.json(users);
     },
 
     async getUserById(req, res) {
-        const user =  await User.findAll({
+        const user =  await Users.findAll({
             where: {id: req.params.id}
         });
      
@@ -15,14 +15,13 @@ module.exports = {
     },
 
     async postUser(req, res) {
-        const user = await User.create(req.body);
-        return res.send(user);
+        const user = await Users.create(req.body);
+        return res.json(user);
     },
 
     async editUser(req, res) {
-
         const {name, password, email} = req.body;
-        await User.update(
+        await Users.update(
             {
                 name,
                 password,
@@ -37,7 +36,7 @@ module.exports = {
     },
 
     async deleteUser(req, res) {
-        await User.destroy({
+        await Users.destroy({
             where: {
                 id: req.params.id
             }

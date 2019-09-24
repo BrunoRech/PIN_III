@@ -1,12 +1,12 @@
-const {User} = require('./User');
+const {Users} = require('./Users');
 
 module.exports = (sequelize, DataTypes) => {
-    const UserSearch = sequelize.define('UserSearch', {
+    const UserSearches = sequelize.define('UserSearches', {
         id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         userId: {
             type: DataTypes.INTEGER,
             references: {
-                model: User,
+                model: Users,
                 key: 'id',
             },
         },
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         searchQuery: {
             type: DataTypes.STRING
         }
-    });
+    },{timestamps: false});
 
-    return UserSearch;
+    return UserSearches;
 }

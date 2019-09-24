@@ -1,13 +1,13 @@
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable('FavoriteCourse',{
+    return queryInterface.createTable('FavoriteCourses',{
       
       UserId:{
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        references: { model: 'User', keys: 'id' },
+        references: { model: 'Users', keys: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
@@ -17,7 +17,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        references: { model: 'Course', keys: 'id' },
+        references: { model: 'Courses', keys: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
@@ -26,6 +26,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('FavoriteCourse');
+    return queryInterface.dropTable('FavoriteCourses');
   }
 };

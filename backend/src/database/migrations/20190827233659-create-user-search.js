@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable('UserSearch',{
+    return queryInterface.createTable('UserSearches',{
       id:{
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -11,7 +11,7 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        references: { model: 'User', keys: 'id' },
+        references: { model: 'Users', keys: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
@@ -27,6 +27,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('UserSearch');
+    return queryInterface.dropTable('UserSearches');
   }
 };

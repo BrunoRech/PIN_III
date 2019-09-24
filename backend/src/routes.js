@@ -1,20 +1,12 @@
 const express = require('express');
 const routes = express.Router();
 
-//controllers
-const userController = require('./controllers/Users/UserController');
 const loginController = require('./controllers/Login/LoginController');
 
-//retorna todos
-routes.get('/users', userController.getUsers);
-//retorna um pelo id
-routes.get('/users/:id', userController.getUserById);
-//cria um novo usuário e salva no banco
-routes.post('/users', userController.postUser);
-//edita um usuário ja existente
-routes.put('/users/:id', userController.editUser);
-//deleta o usuário
-routes.delete('/users/delete/:id', userController.deleteUser);
+routes.use('/users', require('./controllers/Users/routes'));
+routes.use('/courses', require('./controllers/Courses/routes'));
+routes.use('/favorites', require('./controllers/Favorites/routes'));
+//routes.use('/search', require('./controllers/Search/routes'));
 
 routes.post('/login', loginController.login);
 routes.post('/teste', loginController.teste);

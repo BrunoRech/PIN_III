@@ -15,10 +15,8 @@ module.exports = {
     teste(req,res){
         const token = req.headers['token'];
         const response = JwtController.verifyToken(token, res);
-        //console.log(reponse);
-       // return res.send(response);
-       return;
-
+        console.log(reponse);
+        return res.send(response);
     }
 }
 
