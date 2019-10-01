@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="func.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="login.js"></script>
+        <script type="text/javascript" src="maintAPI.js"></script>
+        <script type="text/javascript" src="maintCourse.js"></script>
+        <script type="text/javascript" src="signin.js"></script>
+        <script type="text/javascript" src="course.js"></script>
+        <script type="text/javascript" src="search.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+    <body onload="createPageIndex()">
+        <div id="principal">
+            <div id="barra_menu">
+                <div id="botoes">
+                    <input class="botao logo" type="text" value="Aprenden.do" onclick="createPageIndex()" readonly/>
+                    <input id="teste" class="botao busca" type="search" onsearch="createPageSearch()"/>
+                    <i class="material-icons botao login" onclick="createPageLogin()">account_circle</i>
+                </div>
+            </div>                       
+
+            <div id="content">
+
+            </div>
+
+<!--            <div class="base">
+                <h1 class="title">O que você está procurando?</h1>
+                <div class="op1">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, \n\
+             mauris nec dictum eleifend, eros felis rhoncus dui, quis pulvinar dui neque in neque.</p>
+                </div>
+                <div class="op2">
+                    <label>valor</label>
+                    <label>R$ 200,00</label>
+                    <label>duração</label>
+                    <label>40h</label>
+                </div>
+            </div>-->
+
+        </div>
+    </body>
+</html>

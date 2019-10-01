@@ -1,0 +1,232 @@
+* {
+    -webkit-touch-callout: none;  
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-style: none;
+    user-select: none;
+    outline: none;
+}
+
+html {
+    height: 100%;
+    margin: auto;
+}
+
+body {
+    background-color: #303150;    
+}
+
+div#principal{
+    margin: -10px -10px -10px -10px;    
+}
+
+div#barra_menu{   
+    height: 65px;
+    background-color: #1f2035;    
+    display: fixed;
+    min-width: 300px;
+}
+
+div#botoes {
+    height: 100%;
+    margin: 0px auto 0px auto;
+    min-width: 300px;
+    max-width: 800px;
+    display: block;
+}
+
+div#texto {   
+    display: fixed;
+}
+
+.botao {
+    border-radius: 20px;
+    border-style: none;
+    position: relative;
+    background-color: white;    
+    padding: 0px 10px 3px 12px;
+    height: 20px;
+}
+
+.login {
+    height: 40%;
+    width: 31px;
+    left: 310px;
+    top: 33%;
+    color: #303150;
+    font-size: 30px !important;
+}
+
+input.busca {    
+    height: 40%;
+    width: 190px;    
+    left: 310px;
+    top: 15%;  
+    padding: 0px 10px 0px 10px;
+}
+
+input.logo {    
+    background-color: rgba(0,0,0,0);
+    height: 50%;
+    width: 220px;
+    top: 25%;    
+    font-family: 'Kaushan Script', cursive;
+    font-size: 38px;
+    color: #FDFEF9;
+}
+
+div.base {
+    height:100%;
+    background-color: #1f2035;
+    border-radius: 20px;
+    margin: 25px auto 25px auto;
+    min-width: 300px;
+    max-width: 800px;
+    display: block;    
+    padding: 20px;
+    box-shadow: 0px 0px 15px -5px black;
+    min-height: 120px;
+}
+
+.basep {
+    min-height: 0px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+div.imagem {
+    margin: 25px auto 25px auto;
+    max-width: 800px;
+    text-align: -webkit-center;
+}
+
+img.imagem {
+    max-height: 300px;
+    margin: 25px auto 25px auto;
+}
+
+h1.title {
+    padding-bottom: 20px;
+    margin: auto;
+    color : white;
+}
+
+h2.title {
+    padding: 30px 0px 15px 25px;
+    margin: auto;
+    color : white;
+}
+
+h1.center {
+    text-align: center;
+    color: #777777; 
+    padding: 0px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+p.descr {
+    padding-left : 25px;
+    padding-right: 25px;
+    margin-right: 20px;
+    margin: auto;
+    color : #777777;
+    text-align: justify;
+}
+
+p.left {
+    padding-left : 35px;
+}
+
+div.botoes {
+    padding-left: 20px;
+    width: 70px;
+    height: 30px;
+    display: flex;
+}
+
+.entrar {
+    background: transparent;
+    color: #777777;
+    font-weight: 600;
+    font-size: 16px;
+    padding-left: 195px;
+}
+
+.site {
+    padding: 5px;
+    background-color: white;
+    height: auto;
+    min-width: 100px;
+}
+
+label {
+    min-width: 115px;
+    color: white;
+    padding-top: 3px;
+}
+
+div.course01 {
+    width: 80%;
+    display: inline-block;
+}
+
+div.course02 {
+    width: 15%;
+    display: grid;
+    text-align-last: end;
+    float:right;
+}
+
+div.course03 {
+    display: grid;
+    text-align-last: end;
+    padding: 20px 0px 0px 25px;
+}
+
+.titleCourse {
+    margin: 0px 0px 20px 0px;
+    color: white;
+}
+
+.valCourse {
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    padding-bottom: 10px;  
+}
+
+.defCourse {
+    color: #777777;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.descrCourse {
+    color: #777777;
+    padding-left : 25px;
+    margin-right: 20px;
+    margin: auto;
+    text-align: justify;
+}
+.select {
+    text-align: left;
+    color: white;        
+    padding-left: 30px;
+}
+
+.search {
+    margin: 20px 14px 0px 25px;
+    width: 100%;
+}
+
+.search1 {
+    width: 98%;
+}
+
+.inline {
+    display: flex;
+}
+
