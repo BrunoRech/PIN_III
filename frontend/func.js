@@ -14,6 +14,10 @@ function createContentBlock(titleText, contentText, course, center) {
         base.setAttribute('class', 'base');
     }
 
+    if(center || course){
+        $(base).addClass('base_link');
+    }
+
     base.onclick = function() {
         if (course) {
             createPageCourse(course);

@@ -14,3 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 requireDir('./app/models');
 
 app.listen(3000);
+
+app.get('/', function(res){
+    res.sendFile('index.html', { root: __dirname + '/../'});
+})

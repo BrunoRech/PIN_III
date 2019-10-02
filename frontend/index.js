@@ -1,4 +1,24 @@
-
+$(window).load(function(){
+    var oBotaoBusca = $('#botao_busca');
+    var oInputBusca = $('#input_busca');
+    var fnProc = () => {
+        if(oInputBusca.val().length > 0){
+            oBotaoBusca.css('opacity', 1);
+            oBotaoBusca.css('pointer-events', 'initial');
+        }
+        else {
+            oBotaoBusca.css('opacity', 0);
+            oBotaoBusca.css('pointer-events', 'none');
+        }
+    };
+    oInputBusca.on('input blur', fnProc);
+    fnProc();
+    oBotaoBusca.on('click', () =>{
+        if(oInputBusca.val()){
+            createPageSearch(oInputBusca.val());
+        }
+    });
+})
 
 function createPageIndex() {
     cleanContent();
