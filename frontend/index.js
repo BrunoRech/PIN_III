@@ -12,6 +12,11 @@ $(window).load(function(){
         }
     };
     oInputBusca.on('input blur', fnProc);
+    oInputBusca.on('keydown', (event) => {
+        if(event.key == 'Enter' || (event.keyCode || event.which) == 13){
+            oBotaoBusca.trigger('click');
+        }
+    });
     fnProc();
     oBotaoBusca.on('click', () =>{
         if(oInputBusca.val()){
