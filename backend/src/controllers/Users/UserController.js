@@ -1,4 +1,5 @@
 const { Users } = require('../../app/models');
+const JwtController = require('../Jwt/JwtController');
 
 module.exports = {
     async getUsers(req, res) {
@@ -15,7 +16,10 @@ module.exports = {
     },
 
     async postUser(req, res) {
-        const user = await Users.create(req.body);
+        let user = req.body
+        const password = JwtController.encrypt(user.password);
+        const newUser = {...user, password};
+        user = await Users.create(newUser);
         return res.json(user);
     },
 
