@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Aprenden.do</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="func.js"></script>
-        <script type="text/javascript" src="index.js"></script>
-        <script type="text/javascript" src="login.js"></script>
-        <script type="text/javascript" src="maintAPI.js"></script>
-        <script type="text/javascript" src="maintCourse.js"></script>
-        <script type="text/javascript" src="signin.js"></script>
-        <script type="text/javascript" src="course.js"></script>
-        <script type="text/javascript" src="search.js"></script>
+        <script type="text/javascript" src="main.js"></script>
         <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
-    <body onload="createPageIndex()">
+    <body>
         <div id="principal">
             <div id="barra_menu">
                 <div id="botoes">
-                    <input class="botao logo" type="text" value="Aprenden.do" onclick="createPageIndex()" readonly/>
+                    <input id="logo" class="botao logo" type="text" value="Aprenden.do" readonly/>
                     <input id="input_busca" class="botao busca" placeholder="Digite Aqui..." type="text"/>
                     <span  id="botao_busca" class="material-icons botao_busca">search</span>
-                    <i class="material-icons botao login" onclick="createPageLogin()">account_circle</i>
+                    <i     id="botao_login" class="material-icons botao login">account_circle</i>
                 </div>
             </div>                       
 
