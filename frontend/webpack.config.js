@@ -1,16 +1,19 @@
 module.exports = {
-    context: __dirname + "/../frontend",
     entry: "./main.ts",
     output: {
-        filename: "main.js",
+        path: __dirname + "/dist",
+        filename: "main.js"
     },
+    mode: 'development',
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
     devServer: {
       contentBase: './dist',
-      hot: true,
+      hot: true
     },
+
+    plugins: [],
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

@@ -79,7 +79,7 @@ export default {
         var button = document.createElement('button');
         button.setAttribute('class', 'entrar');
         button.innerHTML = nome;
-        $(button).on('click', fn);
+        $(button).on('click', () => { fn(); });
         div.appendChild(button);
         document.getElementsByClassName(father)[0].appendChild(div);
     }
