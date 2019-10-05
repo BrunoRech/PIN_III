@@ -6,17 +6,17 @@ module.exports = {
     async login(req, res) {
         const {email, password} = req.body;
         try {
-            const data =  JSON.stringify(await Users.findAll({
-                where: {email: email}
-            }));
-            if(data.length == 0){
+            const data = await Users.findAll({
+                where: {email}
+            });
+ 
+            if(!data[0]){
                 return res.status(401).send('Login inválido!');
             }
-                const auxPassword = JwtController.encrypt(password)
-                const {id, password:psw} = data[0];
-                console.log(data)
-                console.log(auxPassword, psw)
-                if(auxPassword !== psw){
+            const {id, password:psw} = data[0];
+            const auxPassword = JwtController.verify(psw);
+            console.log(auxPassword, password)
+                if(password !== psw){
                     return res.status(401);
                 }
                 const token = JwtController.encrypt(id);

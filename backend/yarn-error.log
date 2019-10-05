@@ -1,22 +1,22 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js debug
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Eclipse\Sumo\bin\;C:\Program Files (x86)\Eclipse\Sumo\tools\;C:\Program Files\dotnet\;C:\Users\jefip\AppData\Local\Microsoft\WindowsApps;C:\Users\jefip\AppData\Roaming\Composer\vendor\bin;C:\Users\jefip\AppData\Local\Yarn\bin;C:\Users\jefip\AppData\Roaming\npm;C:\Users\jefip\.dotnet\tools;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;
+  C:\Users\bruno\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\bruno\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\WINDOWS\System32\OpenSSH;D:\Python\Scripts;D:\Python;C:\Users\bruno\AppData\Local\Microsoft\WindowsApps;C:\Users\bruno\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bruno\AppData\Roaming\npm;C:\Users\bruno\AppData\Local\Yarn\bin;C:\Android\Sdk\platform-tools;C:\Android\Sdk\tools;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
-  1.12.3
+  1.17.3
 
 Node version: 
-  10.13.0
+  10.16.1
 
 Platform: 
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\jefip\OneDrive\Documents\vscode\UDESC\PINIII\backend\package.json: Unexpected string in JSON at position 177
+  SyntaxError: C:\Users\bruno\OneDrive\Documents\projetos\Pin3\backend\package.json: Unexpected token / in JSON at position 112
       at JSON.parse (<anonymous>)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:1631:59
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
       at Generator.next (<anonymous>)
       at step (C:\Program Files (x86)\Yarn\lib\cli.js:304:30)
       at C:\Program Files (x86)\Yarn\lib\cli.js:315:13
@@ -28,8 +28,8 @@ npm manifest:
     "description": "",
     "main": "index.js",
     "scripts": {
-      "dev": "webpack --mode development && nodemon src/index.js"
-      "dev": "webpack --mode development && node --inspect-brk=9229 src/index.js"
+     // "dev": "webpack --mode development && nodemon --inspect-brk=9229 src/index.js"
+      "dev": "nodemon src/index.js"
     },
     "keywords": [],
     "author": "",
