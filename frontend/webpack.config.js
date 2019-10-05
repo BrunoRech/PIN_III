@@ -1,17 +1,12 @@
 module.exports = {
-    entry: "./main.ts",
+    entry: ["webpack-hot-middleware/client", "./main.ts"],
     output: {
-        path: __dirname + "/dist",
         filename: "main.js"
     },
     mode: 'development',
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
-    devServer: {
-      contentBase: './dist',
-      hot: true
-    },
 
     plugins: [],
 

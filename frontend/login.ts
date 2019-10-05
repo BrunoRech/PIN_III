@@ -22,4 +22,3 @@ export default {
         Funct.createContentBlock('Cadastro', '', undefined, 'cadastro');
     }
 }
-
