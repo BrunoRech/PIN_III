@@ -10856,30 +10856,20 @@ exports.default = {
         document.getElementsByClassName(father)[0].appendChild(div);
         return button;
     },
-    createButton: function (father, type, fn) {
-        var _this = this;
+    createButton: function (father, nome, fn) {
         var div = document.createElement('div');
         div.setAttribute('class', 'botoes');
         var button = document.createElement('button');
         button.setAttribute('class', 'entrar');
-        if (type === 'c') {
-            button.innerHTML = 'cadastrar';
-            div.onclick = function () {
-                _this.createPageIndex();
-            };
-        }
-        if (type === 'l') {
-            button.innerHTML = 'entrar';
-            div.onclick = function () {
-                _this.createPageIndex();
-            };
-        }
-        if (type === 's') {
-            button.innerHTML = 'salvar';
-            $(div).on('click', function (event) { return fn; });
-        }
+        button.innerHTML = nome;
+        $(button).on('click', fn);
         div.appendChild(button);
         document.getElementsByClassName(father)[0].appendChild(div);
+    },
+    stripHtml: function (html) {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
     }
 };
 
@@ -10976,13 +10966,26 @@ exports.default = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var func_1 = __webpack_require__(/*! ./func */ "./func.ts");
+var index_1 = __webpack_require__(/*! ./index */ "./index.ts");
+var $ = __webpack_require__(/*! jquery */ "../../../../../../node_modules/jquery/dist/jquery.js");
 exports.default = {
     createPageLogin: function () {
         func_1.default.cleanContent();
         func_1.default.createContentBlock('Login', '');
-        func_1.default.createInput('base', 'usuário');
-        func_1.default.createInput('base', 'senha  ');
-        func_1.default.createButton('base', 'l');
+        var oBotaoUsuario = func_1.default.createInput('base', 'E-Mail');
+        var oBotaoSenha = func_1.default.createInput('base', 'Senha');
+        func_1.default.createButton('base', 'Login', function () {
+            var oDados = {
+                email: oBotaoUsuario.value,
+                password: oBotaoSenha.value
+            };
+            $.post('/api/login', oDados).done(function (sToken) {
+                window.localStorage.setItem('localToken', sToken);
+                index_1.default.createPageIndex();
+            }).fail(function (oErro) {
+                window.alert(func_1.default.stripHtml(oErro.responseText));
+            });
+        });
         func_1.default.createContentBlock('Cadastro', '', undefined, 'cadastro');
     }
 };
@@ -11021,12 +11024,12 @@ exports.default = {
     createPageManutAPI: function () {
         func_1.default.cleanContent();
         func_1.default.createContentBlock('Manutenção de API\'s', '');
-        func_1.default.createInput('base', 'código');
-        func_1.default.createInput('base', 'url');
-        func_1.default.createInput('base', 'parâmetros');
-        func_1.default.createInput('base', 'atualizar em');
-        func_1.default.createInput('base', 'intervalo');
-        func_1.default.createButton('base', 's');
+        var oUrl = func_1.default.createInput('base', 'URL');
+        var oParametro = func_1.default.createInput('base', 'Parâmetros');
+        var oAtualizar = func_1.default.createInput('base', 'Atualizar em');
+        var oIntervalo = func_1.default.createInput('base', 'Intervalo');
+        func_1.default.createButton('base', 'Enviar', function () {
+        });
     }
 };
 
@@ -11044,18 +11047,35 @@ exports.default = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var func_1 = __webpack_require__(/*! ./func */ "./func.ts");
+var index_1 = __webpack_require__(/*! ./index */ "./index.ts");
+var $ = __webpack_require__(/*! jquery */ "../../../../../../node_modules/jquery/dist/jquery.js");
 exports.default = {
     createPageManut: function () {
         func_1.default.cleanContent();
         func_1.default.createContentBlock('Manutenção de Cursos', '');
-        func_1.default.createInput('base', 'código');
-        func_1.default.createInput('base', 'nome');
-        func_1.default.createInput('base', 'descrição');
-        func_1.default.createInput('base', 'categoria');
-        func_1.default.createInput('base', 'preço atual');
-        func_1.default.createInput('base', 'avaliação');
-        func_1.default.createInput('base', 'plataforma');
-        func_1.default.createButton('base', 's', function () {
+        var oNome = func_1.default.createInput('base', 'Nome');
+        var oDescricao = func_1.default.createInput('base', 'Descrição');
+        var oCategoria = func_1.default.createInput('base', 'Categoria');
+        var oPreco = func_1.default.createInput('base', 'Preço Atual');
+        var oAvaliacao = func_1.default.createInput('base', 'Avaliação');
+        var oPlataforma = func_1.default.createInput('base', 'Plataforma');
+        var oImagem = func_1.default.createInput('base', 'Imagem');
+        func_1.default.createButton('base', 'Enviar', function () {
+            var oDados = {
+                category: oCategoria.value,
+                description: oDescricao.value,
+                image: oImagem.value,
+                link: oPlataforma.value,
+                name: oNome.value,
+                occupation: '',
+                price: oPreco,
+                rating: oAvaliacao
+            };
+            $.post('/api/login', oDados).done(function () {
+                index_1.default.createPageIndex();
+            }).fail(function (oErro) {
+                window.alert(func_1.default.stripHtml(oErro.responseText));
+            });
         });
         func_1.default.createContentBlock('Manutenção da API', '', undefined, 'manutAPI');
     }
@@ -11176,16 +11196,34 @@ exports.default = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var func_1 = __webpack_require__(/*! ./func */ "./func.ts");
+var index_1 = __webpack_require__(/*! ./index */ "./index.ts");
+var $ = __webpack_require__(/*! jquery */ "../../../../../../node_modules/jquery/dist/jquery.js");
 exports.default = {
     createPageSingIn: function () {
         func_1.default.cleanContent();
         func_1.default.createContentBlock('Cadastro - Edição', '');
-        func_1.default.createInput('base', 'email');
-        func_1.default.createInput('base', 'confirmar email');
-        func_1.default.createInput('base', 'senha');
-        func_1.default.createInput('base', 'nome');
-        func_1.default.createInput('base', 'nascimento');
-        func_1.default.createButton('base', 'c');
+        var oEmail = func_1.default.createInput('base', 'Email');
+        var oConfEmail = func_1.default.createInput('base', 'Confirmar Email');
+        var oSenha = func_1.default.createInput('base', 'Senha');
+        var oNome = func_1.default.createInput('base', 'Nome');
+        var oNasc = func_1.default.createInput('base', 'Nascimento');
+        func_1.default.createButton('base', 'Confirmar', function () {
+            if (oEmail.value != oConfEmail.value) {
+                window.alert('Os emails estão diferentes.');
+                return;
+            }
+            var oDados = {
+                email: oEmail.value,
+                password: oSenha.value,
+                nome: oNome.value,
+                nascimento: oNasc.value
+            };
+            $.post('/api/login', oDados).done(function () {
+                index_1.default.createPageIndex();
+            }).fail(function (oErro) {
+                window.alert(func_1.default.stripHtml(oErro.responseText));
+            });
+        });
         func_1.default.createContentBlock('Manutenção', '', undefined, 'manut');
     }
 };

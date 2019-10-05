@@ -73,28 +73,19 @@ export default {
         return button;
     }
 
-    ,createButton: function(father, type, fn?: Function) {
+    ,createButton: function(father, nome, fn?: Function) {
         var div = document.createElement('div');
         div.setAttribute('class', 'botoes');
         var button = document.createElement('button');
         button.setAttribute('class', 'entrar');
-        if (type === 'c') {
-            button.innerHTML = 'cadastrar';
-            div.onclick = () => {
-                this.createPageIndex();
-            };
-        }
-        if (type === 'l') {
-            button.innerHTML = 'entrar';
-            div.onclick = () => {
-                this.createPageIndex();
-            };
-        }
-        if (type === 's') {
-            button.innerHTML = 'salvar';
-            $(div).on('click', (event: $.Event) => fn);
-        }
+        button.innerHTML = nome;
+        $(button).on('click', fn);
         div.appendChild(button);
         document.getElementsByClassName(father)[0].appendChild(div);
+    }
+    ,stripHtml: function (html){
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
     }
 }
