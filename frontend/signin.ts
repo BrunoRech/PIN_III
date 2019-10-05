@@ -21,7 +21,7 @@ export default {
                 ,nome: oNome.value
                 ,nascimento: oNasc.value
             };
-            $.post('/api/login', oDados).done(() => {
+            $.post('/api/users', oDados).done(() => {
                 Index.createPageIndex();
             }).fail((oErro) => {
                 window.alert(Funct.stripHtml(oErro.responseText));

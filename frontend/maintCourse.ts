@@ -23,7 +23,7 @@ export default {
                 ,price: oPreco
                 ,rating: oAvaliacao
             };
-            $.post('/api/login', oDados).done(() => {
+            $.post('/api/courses', oDados).done(() => {
                 Index.createPageIndex();
             }).fail((oErro) => {
                 window.alert(Funct.stripHtml(oErro.responseText));
