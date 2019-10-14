@@ -23,8 +23,8 @@ module.exports = {
                 return res.json(existingUser[0]);
             }
            // const password = JwtController.encrypt(user.password);
-            const newUser = {...user, password};
-            user = await Users.create(newUser);
+            // const newUser = {...user, password};
+            user = await Users.create(user);
             return res.json(user);
         } catch (error) {
             return res.status(500).json({error})
