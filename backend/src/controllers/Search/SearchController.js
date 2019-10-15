@@ -1,15 +1,27 @@
-const {UserSearch} = require('../../app/models/UserSearch');
+const { UserSearch } = require('../../app/models/UserSearch');
 
 module.exports = {
-    clearHistory(){
-
+    clearHistory() {
+        try {
+            
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
 
-    getLatestSearch(){
+    getLatestSearch() {
+        try {
 
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
 
-    search(){
-        
+    search() {
+        try {
+
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     }
 }

@@ -1,59 +1,71 @@
 const { Users } = require('../../app/models');
-const JwtController = require('../Jwt/JwtController');
 
 module.exports = {
     async getUsers(req, res) {
-        const users = await Users.findAll();
-        return res.json(users);
+        try {
+            const users = await Users.findAll();
+            return res.json(users);
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
 
     async getUserById(req, res) {
-        const user =  await Users.findAll({
-            where: {id: req.params.id}
-        });
-     
-        return res.json(user);
+        try {
+            const user = await Users.findAll({
+                where: { id: req.params.id }
+            });
+            return res.json(user);
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
 
     async postUser(req, res) {
         try {
             let user = req.body;
-            const existingUser = await Users.findAll({where: {email: user.email}});
-            if(existingUser[0]){
+            const existingUser = await Users.findAll({ where: { email: user.email } });
+            if (existingUser[0]) {
                 return res.json(existingUser[0]);
             }
-           // const password = JwtController.encrypt(user.password);
-            // const newUser = {...user, password};
             user = await Users.create(user);
             return res.json(user);
         } catch (error) {
-            return res.status(500).json({error})
+            return res.status(500).json({ error: error.message })
         }
     },
 
     async editUser(req, res) {
-        const {name, password, email} = req.body;
-        await Users.update(
-            {
-                name,
-                password,
-                email
-            },
-            {
-                where: {id: req.params.id}
-            }
-        )
+        try {
+            const { name, password, email } = req.body;
+            await Users.update(
+                {
+                    name,
+                    password,
+                    email
+                },
+                {
+                    where: { id: req.params.id }
+                }
+            )
 
-        return res.json();
+            return res.json();
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     },
 
     async deleteUser(req, res) {
-        await Users.destroy({
-            where: {
-                id: req.params.id
-            }
-        });
-        return res.send();
+        try {
+            await Users.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+            return res.send();
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
     }
 
 }
