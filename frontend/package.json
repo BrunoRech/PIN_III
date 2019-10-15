@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "nodemon": "^1.19.3",
+    "request": "^2.88.0",
     "source-map-loader": "^0.2.4",
     "typescript": "^3.6.3",
     "webpack": "^4.41.0",
