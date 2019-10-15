@@ -7,18 +7,14 @@ module.exports = {
         const { email, password } = req.body;
         try {
             const data = await Users.findAll({
-                where: { email }
+                where: { email, password }
             });
 
             if (!data[0]) {
-                return res.status(401).send('Login inválido!');
+                return res.status(401).json({erro: 'Login Inválido'});
             }
-            const { id, password: psw } = data[0];
-            const auxPassword = JwtController.verify(psw);
-            console.log(auxPassword, password)
-            if (password !== psw) {
-                return res.status(401);
-            }
+            const { id } = data[0];
+
             const token = JwtController.encrypt(id);
             return res.status(200).send({ auth: true, token: token });
 
