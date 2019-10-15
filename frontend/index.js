@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const http = require('http');
+const request = require('request');
 
 // yarn dev 
 
@@ -17,40 +17,32 @@ app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
 }));
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static(__dirname));
 
-app.all('/api/*', function (req, res) {
-    var creq = http.request({
-        host: req.headers.location,
-        port: 3000,
-        path: req.url,
-        method: req.method,
-        headers: req.headers
-    }, function (cres) {
-        cres.setEncoding('utf8');
-        let sData = '';
-        cres.on('data', function (chunk) {
-            sData += chunk;
-        });
-        cres.on('close', function () {
-            res.writeHead(cres.statusCode);
-            res.write(sData);
-            res.end();
-        });
-        cres.on('end', function () {
-            res.writeHead(cres.statusCode);
-            res.write(sData);
-            res.end();
-        });
-    }).on('error', function (e) {
-        console.log(e.message);
-        res.writeHead(500);
-        res.end();
-    });
+app.use('/api', function (req, res) {
+    var url = 'http://' + req.headers.host + ':3000/api' + req.url;
+    console.log(url);
+    var requestPipe = null;
+    switch(req.method){
+        case 'POST':
+            requestPipe = request.post({uri: url, json: req.body});
+            console.log('POST');
+            break;
+        case 'PUT':
+            requestPipe = request.put({uri: url, json: req.body});
+            console.log('PUT');
+        break;
+        default:
+            requestPipe = request(url);
+            break;
+    }
 
-    creq.end();
+    requestPipe.pipe(res);
 });
 
 app.listen(80);
