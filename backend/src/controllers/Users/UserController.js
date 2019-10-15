@@ -16,11 +16,19 @@ module.exports = {
     },
 
     async postUser(req, res) {
-        let user = req.body
-        const password = JwtController.encrypt(user.password);
-        const newUser = {...user, password};
-        user = await Users.create(newUser);
-        return res.json(user);
+        try {
+            let user = req.body;
+            const existingUser = await Users.findAll({where: {email: user.email}});
+            if(existingUser[0]){
+                return res.json(existingUser[0]);
+            }
+           // const password = JwtController.encrypt(user.password);
+            // const newUser = {...user, password};
+            user = await Users.create(user);
+            return res.json(user);
+        } catch (error) {
+            return res.status(500).json({error})
+        }
     },
 
     async editUser(req, res) {
