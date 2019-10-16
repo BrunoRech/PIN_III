@@ -18,13 +18,13 @@ export default {
             var oDados = {
                  email: oEmail.value
                 ,password: oSenha.value
-                ,nome: oNome.value
-                ,nascimento: oNasc.value
+                ,name: oNome.value
+                ,birthDate: oNasc.value
             };
             $.post('/api/users', oDados).done(() => {
                 Index.createPageIndex();
             }).fail((oErro) => {
-                window.alert(Funct.stripHtml(oErro.responseText));
+                Index.exibeErroRetornoJson(Funct.stripHtml(oErro.responseText));
             });
         });
         Funct.createContentBlock('Manutenção', '', undefined, 'manut');

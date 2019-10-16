@@ -12,11 +12,16 @@ export default {
                  email: oBotaoUsuario.value
                 ,password: oBotaoSenha.value
             }
-            $.post('/api/login', oDados).done((sToken) => {
-                window.localStorage.setItem('localToken', sToken);
-                Index.createPageIndex();
+            $.post('/api/login', oDados).done((oToken) => {
+                if(oToken && oToken.auth && oToken.token){
+                    window.localStorage.setItem('localToken', oToken.token);
+                    Index.createPageIndex();
+                }
+                else {
+                    window.alert(Funct.stripHtml("Erro no login."));
+                }
             }).fail((oErro) => {
-                window.alert(Funct.stripHtml(oErro.responseText));
+                Index.exibeErroRetornoJson(Funct.stripHtml(oErro.responseText));
             });
         });
         Funct.createContentBlock('Cadastro', '', undefined, 'cadastro');
