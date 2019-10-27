@@ -9,7 +9,7 @@ export default {
                 'E',
                 'F',
                 'G');
-        Funct.createButton('base', 'b', function(){
+        Funct.createButton('base', 'Acessar', function(){
             window.open('https://www.udemy.com/course/curso-web/', 'blank');
         });
     }

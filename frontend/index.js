@@ -26,10 +26,9 @@ app.use(express.static(__dirname));
 
 app.use('/api', function (req, res) {
     var url = 'http://' + req.headers.host + ':3000/api' + req.url;
-    if(req.file.filename){
+    if(req.file && req.file.filename){
         req.body.image = req.file.filename;
     }
-    console.log(req.body);
     var requestPipe = null;
     switch(req.method){
         case 'POST':
