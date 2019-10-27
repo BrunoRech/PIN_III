@@ -22,7 +22,7 @@ app.use(multer.single('image'))
 
 app.use(webpackHotMiddleware(compiler));
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/src'));
 
 app.use('/api', function (req, res) {
     var url = 'http://' + req.headers.host + ':3000/api' + req.url;
