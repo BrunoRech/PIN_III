@@ -58,7 +58,7 @@ export default {
         document.getElementById("content").appendChild(base);
     }
 
-    ,createInput: function(father, title) {
+    ,createInput: function(father, title, type:string = 'text', value:string = null) {
         var div = document.createElement('div');
         div.setAttribute('class', 'botoes');
         var label = document.createElement('label');
@@ -66,8 +66,25 @@ export default {
             label.innerHTML = title;
         }
         div.appendChild(label);
-        var button = document.createElement('input');
+        var button;
+        if(type == 'textfield'){
+            button = document.createElement('textarea');
+            $(button).css('height', '5em');
+            $(button).css('width', '20em');
+        }
+        else {
+            button = document.createElement('input');
+            if(type == 'image'){
+                type = 'file';
+                button.setAttribute('accept', 'image/png,image/jpeg')
+            }
+            button.setAttribute('type', type);
+        }
         button.setAttribute('class', 'botao');
+        if(value !== null){
+            button.value = value;
+            button.setAttribute('readOnly', '');
+        }
         div.appendChild(button);
         document.getElementsByClassName(father)[0].appendChild(div);
         return button;

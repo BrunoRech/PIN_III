@@ -76,6 +76,10 @@ div#texto {
     height: 20px;
 }
 
+.botoes .botao:read-only{
+    background-color: #aaaaaa;
+}
+
 .login {
     height: 40%;
     width: 31px;
@@ -210,6 +214,7 @@ div.botoes {
     width: 100%;
     min-height: 30px;
     display: flex;
+    margin-bottom: 5px;
 }
 
 .entrar {

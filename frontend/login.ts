@@ -1,12 +1,18 @@
 import Funct from "./func";
 import Index from "./index";
+import Signin from "./signin";
 import * as $ from "jquery";
 export default {
     createPageLogin: function() {
+        var token = window.localStorage.getItem('localToken');
+        if(token){
+            Signin.createPageSingIn();
+            return;
+        }
         Funct.cleanContent();
         Funct.createContentBlock('Login', '');
         var oBotaoUsuario = Funct.createInput('base', 'E-Mail');
-        var oBotaoSenha = Funct.createInput('base', 'Senha');
+        var oBotaoSenha = Funct.createInput('base', 'Senha', 'password');
         Funct.createButton('base', 'Login', () => {
             var oDados = {
                  email: oBotaoUsuario.value

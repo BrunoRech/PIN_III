@@ -6,25 +6,38 @@ export default {
         Funct.cleanContent();
         Funct.createContentBlock('Manutenção de Cursos', '');
         var oNome = Funct.createInput('base', 'Nome');
-        var oDescricao = Funct.createInput('base', 'Descrição');
+        var oDescricao = Funct.createInput('base', 'Descrição', 'textfield');
         var oCategoria = Funct.createInput('base', 'Categoria');
-        var oPreco = Funct.createInput('base', 'Preço Atual');
-        var oAvaliacao = Funct.createInput('base', 'Avaliação');
-        var oPlataforma = Funct.createInput('base', 'Plataforma');
-        var oImagem = Funct.createInput('base', 'Imagem');
-        Funct.createButton('base', 'Enviar', () => {
+        var oPreco = Funct.createInput('base', 'Preço Atual', 'number');
+        var oAvaliacao = Funct.createInput('base', 'Avaliação', 'number');
+        var oPlataforma = Funct.createInput('base', 'Link', 'url');
+        var oImagem = Funct.createInput('base', 'Imagem', 'image');
+        Funct.createButton('base', 'Enviar', async () => {
             var oDados = {
                  category: oCategoria.value
                 ,description: oDescricao.value
-                ,image: oImagem.value
                 ,link: oPlataforma.value
                 ,name: oNome.value
                 ,occupation: ''
-                ,price: oPreco
-                ,rating: oAvaliacao
+                ,price: oPreco.value
+                ,rating: oAvaliacao.value
             };
-            $.post('/api/courses', oDados).done(() => {
-                Index.createPageIndex();
+            
+            var formData = new FormData();
+            for (var key in oDados ) {
+                formData.append(key, oDados[key]);
+            }
+            formData.append('image', oImagem.files[0]);
+
+            $.ajax({
+                 url: '/api/courses'
+                ,type: 'POST'
+                ,data: formData
+                ,processData: false
+                ,contentType: false
+            }).done(() => {
+                window.alert(Funct.stripHtml("Cadastrado com Sucesso!"));
+                this.createPageManut();
             }).fail((oErro) => {
                 window.alert(Funct.stripHtml(oErro.responseText));
             });
