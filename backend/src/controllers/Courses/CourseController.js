@@ -16,7 +16,7 @@ module.exports = {
             const courses = await Courses.findAll({
                 where: { id: req.params.id }
             });
-            return res.json(courses);
+            return res.json(courses[0]);
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
