@@ -3,7 +3,25 @@ import Login from "./login";
 import Funct from "./func";
 import Search from "./search";
 export default {
-    createPageIndex: function() {
+    exibeErroRetornoJson(xRetorno){
+        if(typeof(xRetorno) == 'string'){
+            try{
+                xRetorno = JSON.parse(xRetorno);
+            }
+            catch (ex){
+                xRetorno = {
+                    erro: xRetorno
+                }
+            }
+        }
+        if(xRetorno.erro || xRetorno.error){
+            window.alert(xRetorno.erro ? xRetorno.erro : xRetorno.error)
+        }
+        else {
+            window.alert('Erro na requisição.')
+        }
+    }
+    ,createPageIndex: function() {
         Funct.cleanContent();
         
         var base = document.createElement('div');

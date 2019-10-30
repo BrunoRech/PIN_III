@@ -1,5 +1,5 @@
 module.exports = {
-    entry: ["webpack-hot-middleware/client", "./main.ts"],
+    entry: ["webpack-hot-middleware/client", "./src/scripts/main.ts"],
     output: {
         filename: "main.js"
     },
