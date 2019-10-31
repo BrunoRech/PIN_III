@@ -24,7 +24,7 @@ export default {
         return new Promise(function(resolve) {
             var token = window.localStorage.getItem('localToken');
             if(token){
-                var sId = 3 //window.localStorage.getItem('localId');
+                var sId = window.localStorage.getItem('localId');
                 $.get('/api/users/' + sId, function(res){
                     resolve(res[0]);
                 })

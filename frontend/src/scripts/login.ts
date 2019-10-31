@@ -21,7 +21,7 @@ export default {
             $.post('/api/login', oDados).done((oToken) => {
                 if(oToken && oToken.auth && oToken.token){
                     window.localStorage.setItem('localToken', oToken.token);
-                    window.localStorage.setItem('localId',    oToken.id);
+                    window.localStorage.setItem('localId',    oToken.user.id);
                     Index.createPageIndex();
                 }
                 else {
