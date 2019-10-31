@@ -97,7 +97,11 @@ div#texto {
 }
 
 .login > span {
-    bottom: 5px;
+    bottom: 1px;
+    max-width: 70px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
     position: relative;
 }
 

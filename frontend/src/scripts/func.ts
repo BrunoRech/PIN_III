@@ -10,12 +10,29 @@ export default {
         while (myNode.firstChild) {
             myNode.removeChild(myNode.firstChild);
         }
-        $('#botao_login>span').detach();
-        var token = window.localStorage.getItem('localToken');
-        if(token){
-            var sUsuario = 'Usuário';// TODO Como buscar o nome?
-            $('<span>').html(sUsuario).prependTo($('#botao_login'));
+        var oUsuarioAtual = $('#botao_login>span');
+        if(oUsuarioAtual.length == 0){
+            this.getDadosUsuarioAtual().then(function(oDados : any){
+                if(oDados){
+                    $('<span>').html(oDados.name).prependTo($('#botao_login'));
+                }
+            });
         }
+    }
+    
+    ,getDadosUsuarioAtual: function(){
+        return new Promise(function(resolve) {
+            var token = window.localStorage.getItem('localToken');
+            if(token){
+                var sId = 3 //window.localStorage.getItem('localId');
+                $.get('/api/users/' + sId, function(res){
+                    resolve(res[0]);
+                })
+            }
+            else {
+                resolve(null);
+            }
+        });
     }
 
     ,createContentBlock: function(titleText, contentText, course?, center?) {
@@ -64,7 +81,7 @@ export default {
         document.getElementById("content").appendChild(base);
     }
 
-    ,createInput: function(father, title, type:string = 'text', value:string = null) {
+    ,createInput: function(father, title, type:string = 'text', value:string = null, disabled:boolean = false) {
         var div = document.createElement('div');
         div.setAttribute('class', 'botoes');
         var label = document.createElement('label');
@@ -87,8 +104,10 @@ export default {
             button.setAttribute('type', type);
         }
         button.setAttribute('class', 'botao');
-        if(value !== null){
+        if(value){
             button.value = value;
+        }
+        if(disabled){
             button.setAttribute('readOnly', '');
         }
         div.appendChild(button);
