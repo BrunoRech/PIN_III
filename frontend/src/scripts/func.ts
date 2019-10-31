@@ -10,6 +10,12 @@ export default {
         while (myNode.firstChild) {
             myNode.removeChild(myNode.firstChild);
         }
+        $('#botao_login>span').detach();
+        var token = window.localStorage.getItem('localToken');
+        if(token){
+            var sUsuario = 'Usuário';// TODO Como buscar o nome?
+            $('<span>').html(sUsuario).prependTo($('#botao_login'));
+        }
     }
 
     ,createContentBlock: function(titleText, contentText, course?, center?) {
