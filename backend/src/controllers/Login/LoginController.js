@@ -16,7 +16,7 @@ module.exports = {
             const { id } = data[0];
 
             const token = JwtController.encrypt(id);
-            return res.status(200).send({ auth: true, token: token });
+            return res.status(200).send({ auth: true, token, user: data[0] });
 
         } catch (error) {
             return res.status(500).json({ error: error.message })
