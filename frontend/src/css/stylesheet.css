@@ -197,6 +197,7 @@ h1.center {
 }
 
 p.descr {
+    font-size: 1.1em;
     padding-left : 25px;
     padding-right: 25px;
     margin-right: 20px;

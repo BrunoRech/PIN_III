@@ -1,20 +1,25 @@
 import Funct from "./func";
+import * as $ from "jquery";
 export default {
     createPageCourse: function(course: string) {
+        course = "18";
         Funct.cleanContent();
-        this.createCourse('A',
-                'B',
-                'C',
-                'D',
-                'E',
-                'F',
-                'G');
-        Funct.createButton('base', 'Acessar', function(){
-            window.open('https://www.udemy.com/course/curso-web/', 'blank');
+        $.get('/api/courses/' + course).done((ret)=>{
+            ret = ret;
+            this.createCourse(ret.id + ' - ' + ret.name,
+                    ret.description,
+                    ret.rating,
+                    ret.category,
+                    ret.price);
+            Funct.createButton('base', 'Acessar', function(){
+                window.open(ret.link, 'blank');
+            });
+        }).fail((oErro)=>{
+            window.alert(Funct.stripHtml(oErro.responseText));
         });
     }
 
-    ,createCourse: function(titletx, descrtx, timetx, avaliabletx, certificatetx, valuetx, totaltimetx) {
+    ,createCourse: function(titletx, descrtx, iRating, sCategory, valuetx) {
         var base = document.createElement('div');
 
         var title = document.createElement('h1');
@@ -29,31 +34,21 @@ export default {
 
         title = document.createElement('h2');
         title.setAttribute('class', 'title');
-        title.innerHTML = 'Duração total';
+        title.innerHTML = 'Categoria';
         base.appendChild(title);
 
         descr = document.createElement('p');
-        descr.innerHTML = timetx;
+        descr.innerHTML = sCategory;
         descr.setAttribute('class', 'descr left');
         base.appendChild(descr);
 
         title = document.createElement('h2');
         title.setAttribute('class', 'title');
-        title.innerHTML = 'Disponibilidade';
+        title.innerHTML = 'Avaliação';
         base.appendChild(title);
 
         descr = document.createElement('p');
-        descr.innerHTML = avaliabletx;
-        descr.setAttribute('class', 'descr left');
-        base.appendChild(descr);
-
-        title = document.createElement('h2');
-        title.setAttribute('class', 'title');
-        title.innerHTML = 'Certificado';
-        base.appendChild(title);
-
-        descr = document.createElement('p');
-        descr.innerHTML = certificatetx;
+        descr.innerHTML = iRating;
         descr.setAttribute('class', 'descr left');
         base.appendChild(descr);
 
@@ -68,22 +63,10 @@ export default {
         var valuet = document.createElement('label');
         valuet.setAttribute('class', 'valCourse');
         valuet.innerHTML = valuetx;
-        div2.appendChild(valuet);
-
-        var time = document.createElement('label');
-        time.setAttribute('class', 'defCourse');
-        time.innerHTML = 'duração';
-        div2.appendChild(time);
-
-        var timet = document.createElement('label');
-        timet.setAttribute('class', 'valCourse');
-        timet.innerHTML = totaltimetx;
-        div2.appendChild(timet);
+        div2.appendChild(valuet)
 
         div2.appendChild(value);
         div2.appendChild(valuet);
-        div2.appendChild(time);
-        div2.appendChild(timet);
         base.appendChild(div2);
         base.setAttribute('class', 'base');
         document.getElementById("content").appendChild(base);

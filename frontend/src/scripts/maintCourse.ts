@@ -42,6 +42,6 @@ export default {
                 window.alert(Funct.stripHtml(oErro.responseText));
             });
         });
-        Funct.createContentBlock('Manutenção da API', '', undefined, 'manutAPI');
+        // Funct.createContentBlock('Manutenção da API', '', undefined, 'manutAPI');
     }
 }
