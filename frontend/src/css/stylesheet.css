@@ -81,12 +81,28 @@ div#texto {
 }
 
 .login {
+    display: inline-block;
     height: 40%;
-    width: 31px;
+    width: auto;
     left: 310px;
-    top: 33%;
+    top: 22%;
     color: #303150;
-    font-size: 30px !important;
+    font-size: 15px !important;
+    font-weight: bold;
+}
+
+.login > i {
+    bottom: -2px;
+    position: relative;
+}
+
+.login > span {
+    bottom: 1px;
+    max-width: 70px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
 }
 
 input.busca {    
