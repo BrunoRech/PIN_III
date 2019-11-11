@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) =>{
         image: {type: DataTypes.STRING},
         link: {type: DataTypes.STRING},
         name: {type: DataTypes.STRING},
-        occupation: {type: DataTypes.STRING},
         price: {type: DataTypes.DOUBLE},
         rating: {type: DataTypes.DOUBLE},
     },{timestamps: false});

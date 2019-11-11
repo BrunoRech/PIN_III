@@ -34,11 +34,6 @@ module.exports = {
         allowNull: false,
       },
 
-      occupation: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
       price: {
         type: DataTypes.DOUBLE,
         allowNull: false,
