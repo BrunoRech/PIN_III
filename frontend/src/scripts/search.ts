@@ -47,11 +47,9 @@ export default {
         div1.appendChild(buttonI);
         document.getElementsByClassName('base')[0].appendChild(div1);
         Funct.createButton(base, "Buscar", () => {
-            this.beginSearch(button.value, buttonP.value, buttonR.value, buttonI.value);
+            this.createPageSearch(button.value, buttonP.value, buttonR.value, buttonI.value);
         });
-        if(course || price || rating || category){
-            this.beginSearch(course);
-        }
+        this.beginSearch(course, price, rating, category);
     }
 
     ,beginSearch: function(course: string, price?: string, rating?: string, category?: string){
@@ -69,6 +67,9 @@ export default {
             aQuery.push("category=" + category);
         }
         $.get('/api/courses/query?' + aQuery.join('&')).done((res) => {
+            if(res.length > 25){
+                res = res.slice(0, 25);
+            }
             res.forEach((oEl) => {
                 this.createCourseSerch(oEl.name, oEl.description, oEl.price, oEl.id);
             });

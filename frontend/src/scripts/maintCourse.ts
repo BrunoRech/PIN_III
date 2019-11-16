@@ -16,7 +16,8 @@ export default {
         oAvaliacao.setAttribute("max", "10");
         oAvaliacao.setAttribute("step", "0.1");
         var oPlataforma = Funct.createInput('base', 'Link', 'url');
-        var oImagem = Funct.createInput('base', 'Imagem (200pxx125px)', 'image');
+        var oImagem = Funct.createInput('base', 'Imagem', 'image');
+        oImagem.setAttribute('title', '(Resolução preferida de 200px por 125px)')
         Funct.createButton(document.getElementsByClassName('base')[0], 'Enviar', async () => {
             var oDados = {
                  category: oCategoria.value
