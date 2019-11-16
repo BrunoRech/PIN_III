@@ -8,14 +8,19 @@ module.exports = {
             const { name, price, category, rating } = req.query;
             const courses = await Courses.findAll({
                 where: {
-                    [Op.or]: [
-                        { name },
-                        { price },
-                        { category },
-                        { rating: {
+                    [Op.and]: [
+                        name ? { name } : null,
+                        price ? {
+                            price: {
+                                [Op.lte]: price,
+                            }
+                        } : null,
+                        category ? { category } : null,
+                        rating ? {
+                            rating: {
                                 [Op.gte]: rating,
                             }
-                        }   
+                        } : null,
                     ],
                 }
             });
