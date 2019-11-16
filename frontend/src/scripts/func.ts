@@ -3,6 +3,9 @@ import Course from "./course";
 import Signin from "./signin";
 import Manut  from "./maintCourse";
 import ManutAPI from "./maintAPI";
+import Index from "./index";
+import Search from "./search";
+import { rejects } from "assert";
 export default {
 
     cleanContent: function() {
@@ -21,13 +24,26 @@ export default {
     }
     
     ,getDadosUsuarioAtual: function(){
-        return new Promise(function(resolve) {
+        var me  = this;
+        return new Promise(function(resolve, reject) {
             var token = window.localStorage.getItem('localToken');
             if(token){
                 var sId = window.localStorage.getItem('localId');
-                $.get('/api/users/' + sId, function(res){
-                    resolve(res[0]);
-                })
+                $.get('/api/users/' + sId).done(function(res){
+                    if(!res[0]){
+                        window.localStorage.removeItem('localToken');
+                        window.localStorage.removeItem('localId');
+                        $('#botao_login>span').detach();
+                        Index.createPageIndex();
+                        reject();
+                    }
+                    else {
+                        resolve(res[0]);
+                    }
+                }).fail(function(oErro){
+                    Index.exibeErroRetornoJson(me.stripHtml(oErro.responseText));
+                    reject();
+                });
             }
             else {
                 resolve(null);
@@ -50,7 +66,7 @@ export default {
 
         base.onclick = function() {
             if (course) {
-                Course.createPageCourse(course);
+                Search.createPageSearch('', '', '', course);
             }
             if (center === 'cadastro') {
                 Signin.createPageSingIn();
@@ -60,6 +76,9 @@ export default {
             }
             if (center === 'manutAPI') {
                 ManutAPI.createPageManutAPI();
+            }
+            if (center === 'search') {
+                Search.createPageSearch();
             }
         };
 
@@ -81,7 +100,7 @@ export default {
         document.getElementById("content").appendChild(base);
     }
 
-    ,createInput: function(father, title, type:string = 'text', value:string = null, disabled:boolean = false) {
+    ,createInput: function(father, title, type:string = 'text', value:string = null, disabled:boolean = false):HTMLInputElement {
         var div = document.createElement('div');
         div.setAttribute('class', 'botoes');
         var label = document.createElement('label');
@@ -123,7 +142,7 @@ export default {
         button.innerHTML = nome;
         $(button).on('click', () => { fn(); });
         div.appendChild(button);
-        document.getElementsByClassName(father)[0].appendChild(div);
+        father.appendChild(div);
     }
     ,stripHtml: function (html){
     var tmp = document.createElement("DIV");

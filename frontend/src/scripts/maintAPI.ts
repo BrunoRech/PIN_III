@@ -9,7 +9,5 @@ export default {
         var oParametro = Funct.createInput('base', 'Parâmetros');
         var oAtualizar = Funct.createInput('base', 'Atualizar em');
         var oIntervalo = Funct.createInput('base', 'Intervalo');
-        Funct.createButton('base', 'Enviar', () => { 
-        });
     }
 }

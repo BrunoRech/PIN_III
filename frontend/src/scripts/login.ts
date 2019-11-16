@@ -13,7 +13,7 @@ export default {
         Funct.createContentBlock('Login', '');
         var oBotaoUsuario = Funct.createInput('base', 'E-Mail');
         var oBotaoSenha = Funct.createInput('base', 'Senha', 'password');
-        Funct.createButton('base', 'Login', () => {
+        Funct.createButton(document.getElementsByClassName('base')[0], 'Login', () => {
             var oDados = {
                  email: oBotaoUsuario.value
                 ,password: oBotaoSenha.value

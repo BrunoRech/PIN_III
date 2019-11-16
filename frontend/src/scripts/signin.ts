@@ -22,7 +22,7 @@ export default {
                 var oNome = Funct.createInput('base', 'Nome', 'text');
                 var oNasc = Funct.createInput('base', 'Nascimento', 'date');
             }
-            Funct.createButton('base', 'Confirmar',() => {
+            Funct.createButton(document.getElementsByClassName('base')[0], 'Confirmar',() => {
                 if(!oEmail.checkValidity()){
                     window.alert('Email inválido');
                     return;
@@ -67,7 +67,7 @@ export default {
                     }
                 });
             });
-            Funct.createButton('base', 'Sair', () => {
+            Funct.createButton(document.getElementsByClassName('base')[0], 'Sair', () => {
                 window.localStorage.removeItem('localToken');
                 window.localStorage.removeItem('localId');
                 $('#botao_login>span').detach();

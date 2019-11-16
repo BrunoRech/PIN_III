@@ -323,11 +323,12 @@ div.course03 {
 }
 
 .search1 {
-    width: 98%;
+    width: calc(100% - 22px);
 }
 
 .inline {
     display: flex;
+    margin-bottom: 1.5em;
 }
 
 img.imagem_curso {
@@ -346,3 +347,6 @@ p.descricao_curso {
     padding-right: 220px;
 }
 
+input.botao.search:last-child{
+    margin-right: 0;
+}

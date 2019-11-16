@@ -2,7 +2,6 @@ import Funct from "./func";
 import * as $ from "jquery";
 export default {
     createPageCourse: function(course: string) {
-        course = "18";
         Funct.cleanContent();
         $.get('/api/courses/' + course).done((ret)=>{
             ret = ret;
@@ -13,7 +12,7 @@ export default {
                 ret.rating,
                 ret.category,
                 ret.price);
-            Funct.createButton('base', 'Acessar', function(){
+            Funct.createButton(document.getElementsByClassName('base')[0], 'Acessar', function(){
                 window.open(ret.link, 'blank');
             });
         }).fail((oErro)=>{
@@ -24,7 +23,13 @@ export default {
     ,createCourse: function(sImage, titletx, descrtx, iRating, sCategory, valuetx) {
         var base = document.createElement('div');
 
-        $('<img>').attr('src', '/upload/' + sImage).addClass('imagem_curso').appendTo(base);
+        var oImg = $('<img>').addClass('imagem_curso').appendTo(base);
+        if(/https?:\/\/\w+\.\w+\.\w+\/.+/.test(sImage)){
+            oImg.attr('src', sImage);
+        }
+        else {
+            oImg.attr('src', '/upload/' + sImage);
+        }
 
         var title = document.createElement('h1');
         title.setAttribute('class', 'title titulo_curso');
