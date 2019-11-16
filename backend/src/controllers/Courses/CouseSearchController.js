@@ -9,13 +9,18 @@ module.exports = {
             const courses = await Courses.findAll({
                 where: {
                     [Op.or]: [
-                        { name },
-                        { price },
-                        { category },
-                        { rating: {
+                        name ? { name } : null,
+                        price ? {
+                            price: {
+                                [Op.lte]: price,
+                            }
+                        } : null,
+                        category ? { category } : null,
+                        rating ? {
+                            rating: {
                                 [Op.gte]: rating,
                             }
-                        }   
+                        } : null,
                     ],
                 }
             });
