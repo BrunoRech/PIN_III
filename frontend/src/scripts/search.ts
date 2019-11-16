@@ -1,5 +1,6 @@
 import Funct from "./func";
 import Course from "./course";
+import * as $ from 'jquery';
 export default {
     createPageSearch: function(course) {
         Funct.cleanContent();
@@ -16,6 +17,9 @@ export default {
         button.setAttribute('class', 'botao search1');
         div.appendChild(button);
         document.getElementsByClassName('base')[0].appendChild(div);
+        button.value = course;
+        $('#input_busca').css('opacity', 0);
+        $('#botao_busca').css('opacity', 0);
 
         var div1 = document.createElement('div');
         div1.setAttribute('class', 'inline')

@@ -6,11 +6,13 @@ export default {
         Funct.cleanContent();
         $.get('/api/courses/' + course).done((ret)=>{
             ret = ret;
-            this.createCourse(ret.id + ' - ' + ret.name,
-                    ret.description,
-                    ret.rating,
-                    ret.category,
-                    ret.price);
+            this.createCourse(
+                ret.image,
+                ret.id + ' - ' + ret.name,
+                ret.description,
+                ret.rating,
+                ret.category,
+                ret.price);
             Funct.createButton('base', 'Acessar', function(){
                 window.open(ret.link, 'blank');
             });
@@ -19,17 +21,19 @@ export default {
         });
     }
 
-    ,createCourse: function(titletx, descrtx, iRating, sCategory, valuetx) {
+    ,createCourse: function(sImage, titletx, descrtx, iRating, sCategory, valuetx) {
         var base = document.createElement('div');
 
+        $('<img>').attr('src', '/upload/' + sImage).addClass('imagem_curso').appendTo(base);
+
         var title = document.createElement('h1');
-        title.setAttribute('class', 'title');
+        title.setAttribute('class', 'title titulo_curso');
         title.innerHTML = titletx;
         base.appendChild(title);
 
         var descr = document.createElement('p');
         descr.innerHTML = descrtx;
-        descr.setAttribute('class', 'descr');
+        descr.setAttribute('class', 'descr descricao_curso');
         base.appendChild(descr);
 
         title = document.createElement('h2');

@@ -23,6 +23,8 @@ export default {
     }
     ,createPageIndex: function() {
         Funct.cleanContent();
+        $('#input_busca').css('opacity', 1);
+        $('#botao_busca').css('opacity', 1);
         
         var base = document.createElement('div');
         base.setAttribute('class', 'imagem');

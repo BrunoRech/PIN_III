@@ -36,7 +36,7 @@ export default {
                     return;
                 }
                 var oDados : {[k: string]: any} = {
-                     name: oUsuarioAtual.name ? oUsuarioAtual.name : oNome.value
+                     name:(oUsuarioAtual && oUsuarioAtual.name) ? oUsuarioAtual.name : oNome.value
                 };
                 if(oEmail.value){
                     oDados.email = oEmail.value;
@@ -73,7 +73,7 @@ export default {
                 $('#botao_login>span').detach();
                 Index.createPageIndex();
             })
-            if(token){
+            if(token && oUsuarioAtual.type !== 0){
                 Funct.createContentBlock('Manutenção', '', undefined, 'manut');
             }
         });
