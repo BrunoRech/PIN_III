@@ -37,19 +37,20 @@ module.exports = {
 
     async editUser(req, res) {
         try {
-            const { name, password, email } = req.body;
+            const { name, password, email, birthDate } = req.body;
             await Users.update(
                 {
                     name,
                     password,
-                    email
+                    email,
+                    birthDate,
                 },
                 {
                     where: { id: req.params.id }
                 }
             )
 
-            return res.json();
+            return res.json({ message: 'success' });
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
