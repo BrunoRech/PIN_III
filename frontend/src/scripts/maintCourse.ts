@@ -9,10 +9,16 @@ export default {
         var oDescricao = Funct.createInput('base', 'Descrição', 'textfield');
         var oCategoria = Funct.createInput('base', 'Categoria');
         var oPreco = Funct.createInput('base', 'Preço Atual', 'number');
+        oPreco.setAttribute("min", "0");
+        oPreco.setAttribute("max", "10000");
         var oAvaliacao = Funct.createInput('base', 'Avaliação', 'number');
+        oAvaliacao.setAttribute("min", "0");
+        oAvaliacao.setAttribute("max", "10");
+        oAvaliacao.setAttribute("step", "0.1");
         var oPlataforma = Funct.createInput('base', 'Link', 'url');
         var oImagem = Funct.createInput('base', 'Imagem', 'image');
-        Funct.createButton('base', 'Enviar', async () => {
+        oImagem.setAttribute('title', '(Resolução preferida de 200px por 125px)')
+        Funct.createButton(document.getElementsByClassName('base')[0], 'Enviar', async () => {
             var oDados = {
                  category: oCategoria.value
                 ,description: oDescricao.value

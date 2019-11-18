@@ -23,6 +23,8 @@ export default {
     }
     ,createPageIndex: function() {
         Funct.cleanContent();
+        $('#input_busca').css('opacity', 1);
+        $('#botao_busca').css('opacity', 1);
         
         var base = document.createElement('div');
         base.setAttribute('class', 'imagem');
@@ -34,25 +36,15 @@ export default {
         
         document.getElementById("content").appendChild(base);
         
-        Funct.createContentBlock('Javascript', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n\
-            Morbi facilisis blandit accumsan. Morbi elementum lacus id tempor egestas. \n\
-            Maecenas tristique leo et pharetra pulvinar.', 'Javascript');
+        Funct.createContentBlock('Javascript', 'Aprenda a linguagem que move a web. Acesse a nossa seleção de cursos de\
+        Javascript e você estará pronto para enfrentar o mercado a qualquer momento.', 'Javascript');
     
-        Funct.createContentBlock('Encontre um curso para você agora mesmo!',
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, \n\
-                 mauris nec dictum eleifend, eros felis rhoncus dui, quis pulvinar dui neque in neque. \n\
-                 Nullam finibus tempus pretium. Ut aliquet leo a orci mattis, finibus lacinia est aliquet. \n\
-                 Vivamus sollicitudin nec nunc ac posuere. Ut vulputate volutpat interdum. \n\
-                 Aliquam erat volutpat. In hac habitasse platea dictumst. Praesent orci ex, bibendum venenatis \n\
-                 mattis quis, auctor aliquam orci. Orci varius natoque penatibus et magnis dis parturient \n\
-                 montes, nascetur ridiculus mus. Donec ut elit sit amet odio lobortis blandit vitae vel eros. \n\
-                 Integer arcu dui, iaculis vel fringilla et, volutpat vel diam. Aliquam erat volutpat. Ut nec \n\
-                 augue eget felis ornare malesuada id at erat. Nunc consequat eu nunc vitae iaculis. \n\
-                 Vivamus pulvinar sollicitudin nulla, ut auctor leo luctus non. Nullam a vulputate velit.');
+        Funct.createContentBlock('Encontre um curso para você agora mesmo!', 'Nosso sistema de pesquisa traz para você\
+        a lista de cursos desejados com base em diversos filtros.<br/>Nosso banco de dados é populado com diversos cursos\
+        de diversos locais, assim você pode encontrar o curso que deseja o mais rápido o possível.', '', 'search');
     
-        Funct.createContentBlock('Conheça nossa plataforma', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n\
-            Morbi facilisis blandit accumsan. Morbi elementum lacus id tempor egestas. \n\
-            Maecenas tristique leo et pharetra pulvinar.');
+        Funct.createContentBlock('Conheça nossa plataforma', 'Nossa plataforma traz pra você a mais diversa seleção de\
+        cursos, para que você esteja preparado a qualquer momento!');
     }
 
     ,createOnLoad: function(){
@@ -81,7 +73,7 @@ export default {
             fnProc();
             oBotaoBusca.on('click', () =>{
                 if(oInputBusca.val()){
-                    Search.createPageSearch(oInputBusca.val());
+                    Search.createPageSearch(<string>oInputBusca.val());
                 }
             });
         })

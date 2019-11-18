@@ -111,6 +111,7 @@ input.busca {
     left: 310px;
     top: 15%;  
     padding: 0px 15px 0px 15px;
+    transition: opacity 0.5s;
 }
 
 span.botao_busca {
@@ -322,10 +323,30 @@ div.course03 {
 }
 
 .search1 {
-    width: 98%;
+    width: calc(100% - 22px);
 }
 
 .inline {
     display: flex;
+    margin-bottom: 1.5em;
 }
 
+img.imagem_curso {
+    float: right;
+    width: 200px;
+    height: 125px;
+    box-shadow: 0 0 1px 2px #ffffff;
+    border-radius: 2px;
+}
+
+p.titulo_curso {
+    padding-right: 220px;
+}
+
+p.descricao_curso {
+    padding-right: 220px;
+}
+
+input.botao.search:last-child{
+    margin-right: 0;
+}

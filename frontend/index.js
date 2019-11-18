@@ -36,7 +36,6 @@ app.use('/api', function (req, res) {
             break;
         case 'PUT':
             requestPipe = request.put({uri: url, json: req.body});
-            console.log('PUT');
         break;
         default:
             requestPipe = request(url);
@@ -45,5 +44,8 @@ app.use('/api', function (req, res) {
 
     requestPipe.pipe(res);
 });
+
+express.static.mime.default_type = "image/jpeg";
+app.use('/upload', express.static(__dirname + '/../upload'));
 
 app.listen(80);

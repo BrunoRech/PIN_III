@@ -22,7 +22,7 @@ export default {
                 var oNome = Funct.createInput('base', 'Nome', 'text');
                 var oNasc = Funct.createInput('base', 'Nascimento', 'date');
             }
-            Funct.createButton('base', 'Confirmar',() => {
+            Funct.createButton(document.getElementsByClassName('base')[0], 'Confirmar',() => {
                 if(!oEmail.checkValidity()){
                     window.alert('Email inválido');
                     return;
@@ -36,7 +36,7 @@ export default {
                     return;
                 }
                 var oDados : {[k: string]: any} = {
-                     name: oUsuarioAtual.name ? oUsuarioAtual.name : oNome.value
+                     name:(oUsuarioAtual && oUsuarioAtual.name) ? oUsuarioAtual.name : oNome.value
                 };
                 if(oEmail.value){
                     oDados.email = oEmail.value;
@@ -67,13 +67,13 @@ export default {
                     }
                 });
             });
-            Funct.createButton('base', 'Sair', () => {
+            Funct.createButton(document.getElementsByClassName('base')[0], 'Sair', () => {
                 window.localStorage.removeItem('localToken');
                 window.localStorage.removeItem('localId');
                 $('#botao_login>span').detach();
                 Index.createPageIndex();
             })
-            if(token){
+            if(token && oUsuarioAtual.type !== 0){
                 Funct.createContentBlock('Manutenção', '', undefined, 'manut');
             }
         });

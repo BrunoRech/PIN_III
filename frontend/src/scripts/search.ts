@@ -1,7 +1,8 @@
 import Funct from "./func";
 import Course from "./course";
+import * as $ from 'jquery';
 export default {
-    createPageSearch: function(course) {
+    createPageSearch: function(course: string = '', price: string = '', rating: string = '', category: string = '') {
         Funct.cleanContent();
         var base = document.createElement('div');
         base.setAttribute('class', 'base');
@@ -14,51 +15,70 @@ export default {
         var div = document.createElement('div');
         var button = document.createElement('input');
         button.setAttribute('class', 'botao search1');
+        button.setAttribute('placeholder', 'Nome');
         div.appendChild(button);
         document.getElementsByClassName('base')[0].appendChild(div);
+        button.value = course;
+        $('#input_busca').css('opacity', 0);
+        $('#botao_busca').css('opacity', 0);
 
         var div1 = document.createElement('div');
         div1.setAttribute('class', 'inline')
-        var button = document.createElement('input');
-        button.setAttribute('class', 'botao search');
-        div1.appendChild(button);
-        button = document.createElement('input');
-        button.setAttribute('class', 'botao search');
-        div1.appendChild(button);
-        button = document.createElement('input');
-        button.setAttribute('class', 'botao search');
-        div1.appendChild(button);
+        var buttonP = document.createElement('input');
+        buttonP.setAttribute('class', 'botao search');
+        buttonP.setAttribute("placeholder", "Preço (Menor ou Igual)");
+        buttonP.setAttribute('type', 'number');
+        buttonP.setAttribute('min', '0');
+        buttonP.setAttribute('max', '10000');
+        buttonP.value = price;
+        div1.appendChild(buttonP);
+        var buttonR = document.createElement('input');
+        buttonR.setAttribute('class', 'botao search');
+        buttonR.setAttribute("placeholder", "Avaliação (Maior ou Igual)");
+        buttonR.setAttribute('type', 'number');
+        buttonR.setAttribute('min', '0');
+        buttonR.setAttribute('max', '10000');
+        buttonR.value = rating;
+        div1.appendChild(buttonR);
+        var buttonI = document.createElement('input');
+        buttonI.setAttribute('class', 'botao search');
+        buttonI.setAttribute("placeholder", "Categoria");
+        buttonI.value = category;
+        div1.appendChild(buttonI);
         document.getElementsByClassName('base')[0].appendChild(div1);
-
-        this.createCourseSerch('JavaScript - Udemy',
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, \n\
-                mauris nec dictum eleifend, eros felis rhoncus dui, quis pulvinar dui neque in neque.',
-                '200,00',
-                '40h',
-                'JS');
-        this.createCourseSerch('JavaScript - Udemy',
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, \n\
-                mauris nec dictum eleifend, eros felis rhoncus dui, quis pulvinar dui neque in neque. \n\
-                Nullam finibus tempus pretium. Ut aliquet leo a orci mattis, finibus lacinia est aliquet. \n\
-                Vivamus sollicitudin nec nunc ac posuere. Ut vulputate volutpat interdum. \n\
-                Aliquam erat volutpat. In hac habitasse platea dictumst. Praesent orci ex, bibendum venenatis \n\
-                mattis quis, auctor aliquam orci. Orci varius natoque penatibus et magnis dis parturient \n\
-                montes, nascetur ridiculus mus. Donec ut elit sit amet odio lobortis blandit vitae vel eros. \n\
-                Integer arcu dui, iaculis vel fringilla et, volutpat vel diam. Aliquam erat volutpat. Ut nec \n\
-                augue eget felis ornare malesuada id at erat. Nunc consequat eu nunc vitae iaculis. \n\
-                Vivamus pulvinar sollicitudin nulla, ut auctor leo luctus non. Nullam a vulputate velit.',
-                '200,00',
-                '40h',
-                'JS');
-        this.createCourseSerch('JavaScript - Udemy',
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, \n\
-                mauris nec dictum eleifend, eros felis rhoncus dui, quis pulvinar dui neque in neque.',
-                '200,00',
-                '40h',
-                'JS');
+        Funct.createButton(base, "Buscar", () => {
+            this.createPageSearch(button.value, buttonP.value, buttonR.value, buttonI.value);
+        });
+        this.beginSearch(course, price, rating, category);
     }
 
-    ,createCourseSerch: function(titleText, description, valuetl, timetl, code) {
+    ,beginSearch: function(course: string, price?: string, rating?: string, category?: string){
+        var aQuery = [];
+        if(course){
+            aQuery.push("name=" + course);
+        }
+        if(price){
+            aQuery.push("price=" + price);
+        }
+        if(rating){
+            aQuery.push("rating=" + rating);
+        }
+        if(category){
+            aQuery.push("category=" + category);
+        }
+        $.get('/api/courses/query?' + aQuery.join('&')).done((res) => {
+            if(res.length > 25){
+                res = res.slice(0, 25);
+            }
+            res.forEach((oEl) => {
+                this.createCourseSerch(oEl.name, oEl.description, oEl.price, oEl.id);
+            });
+        }).fail((oErro) => {
+            window.alert(Funct.stripHtml(oErro.responseText));
+        });
+    }
+
+    ,createCourseSerch: function(titleText, description, valuetl, code) {
         var base = document.createElement('div');
         base.setAttribute('class', 'base');
 
@@ -87,16 +107,6 @@ export default {
         valuet.setAttribute('class', 'valCourse');
         valuet.innerHTML = valuetl;
         div2.appendChild(valuet);
-
-        var time = document.createElement('label');
-        time.setAttribute('class', 'defCourse');
-        time.innerHTML = 'duração';
-        div2.appendChild(time);
-
-        var timet = document.createElement('label');
-        timet.setAttribute('class', 'valCourse');
-        timet.innerHTML = timetl;
-        div2.appendChild(timet);
 
         var select = document.createElement('label');
         select.setAttribute('class', 'defCourse select');
